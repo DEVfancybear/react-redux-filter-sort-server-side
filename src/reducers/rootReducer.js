@@ -16,6 +16,12 @@ export default (state = initialState, action) => {
         products: action.payload
       };
     }
+    case types.SEARCH: {
+      return {
+        ...state,
+        products: action.payload
+      };
+    }
     default:
       return state;
   }

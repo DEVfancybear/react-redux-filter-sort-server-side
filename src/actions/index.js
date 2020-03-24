@@ -23,3 +23,14 @@ export const fetchDataToFilter = name => {
     });
   };
 };
+export const search = keyword => {
+  return async dispatch => {
+    const resp = await axios.get(`${URL_API}?q=${keyword}`);
+    console.log(`${URL_API}?q=${keyword}`)
+    const data = await resp.data;
+    dispatch({
+      type: types.SEARCH,
+      payload: data
+    });
+  };
+};

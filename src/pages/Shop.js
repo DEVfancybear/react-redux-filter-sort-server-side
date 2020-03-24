@@ -1,12 +1,13 @@
 import ShopSidebar from "../components/ShopSideBar";
 import ShopFilter from "../components/ShopFilter";
 import { connect } from "react-redux";
-import { fetchDataToServer } from "../actions/index";
+import { fetchDataToServer, fetchDataToFilter } from "../actions/index";
 import React, { Component } from "react";
 
 class Shop extends Component {
   componentDidMount = () => {
     this.props.fetchDataToServer();
+    // this.props.fetchDataToFilter();
   };
 
   render() {
@@ -78,6 +79,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     fetchDataToServer: () => {
       dispatch(fetchDataToServer());
+    },
+    fetchDataToFilter: () => {
+      dispatch(fetchDataToFilter());
     }
   };
 };

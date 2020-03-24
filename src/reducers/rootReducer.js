@@ -10,6 +10,12 @@ export default (state = initialState, action) => {
         ...state,
         products: action.payload
       };
+    case types.FETCH_DATA_IN_FILTER: {
+      return {
+        ...state,
+        products: action.payload
+      };
+    }
     default:
       return state;
   }

@@ -12,3 +12,14 @@ export const fetchDataToServer = (sort, order) => {
     });
   };
 };
+export const fetchDataToFilter = name => {
+  return async dispatch => {
+    const resp = await axios.get(`${URL_API}?name=${name}`);
+    console.log(`${URL_API}?name=${name}`);
+    const data = await resp.data;
+    dispatch({
+      type: types.FETCH_DATA_IN_FILTER,
+      payload: data
+    });
+  };
+};

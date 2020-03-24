@@ -1,40 +1,50 @@
-import React from "react";
+import { connect } from "react-redux";
+import { fetchDataToServer } from "../actions/index";
 
-const ShopFilter = () => {
-  //   function sortData(event) {
-  //     const sorting = event.target.value;
-  //     let sort = '';
-  //     let order = '';
+import React, { Component } from "react";
 
-  //     if (sorting === 'price-asc') {
-  //       sort = 'price';
-  //       order = 'asc';
-  //     } else if (sorting === 'price-desc') {
-  //       sort = 'price';
-  //       order = 'desc';
-  //     }
+class ShopFilter extends Component {
+  sortData = event => {
+    const sorting = event.target.value;
+    let sort = "";
+    let order = "";
 
-  //     Router.push({
-  //       pathname: '/shop',
-  //       query: { sort, order }
-  //     });
-  //   }
+    if (sorting === "price-asc") {
+      sort = "price";
+      order = "asc";
+    } else if (sorting === "price-desc") {
+      sort = "price";
+      order = "desc";
+    }
 
-  return (
-    <div className="flex-sb-m flex-w p-b-35">
-      <div className="flex-w">
-        <div className="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-          <select className="selection-2">
-            <option value="">Default Sorting</option>
-            <option value="price-asc">Price: low to high</option>
-            <option value="price-desc">Price: high to low</option>
-          </select>
+    this.props.fetchDataToServer(sort, order);
+  };
+  render() {
+    return (
+      <div>
+        <div className="flex-sb-m flex-w p-b-35">
+          <div className="flex-w">
+            <div className="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+              <select className="selection-2" onChange={this.sortData}>
+                <option value="">Default Sorting</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+              </select>
+            </div>
+          </div>
+
+          {/* <span className='s-text8 p-t-5 p-b-5'>{totalItems} Items</span> */}
         </div>
       </div>
+    );
+  }
+}
 
-      {/* <span className="s-text8 p-t-5 p-b-5">{totalItems} Items</span> */}
-    </div>
-  );
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    fetchDataToServer: (sort, order) => {
+      dispatch(fetchDataToServer(sort, order));
+    }
+  };
 };
-
-export default ShopFilter;
+export default connect(null, mapDispatchToProps)(ShopFilter);

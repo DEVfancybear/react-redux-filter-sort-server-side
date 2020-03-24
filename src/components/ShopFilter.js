@@ -15,6 +15,12 @@ class ShopFilter extends Component {
     } else if (sorting === "price-desc") {
       sort = "price";
       order = "desc";
+    } else if (sorting === "name-asc") {
+      sort = "name";
+      order = "asc";
+    } else if (sorting === "name-desc") {
+      sort = "name";
+      order = "desc";
     }
 
     this.props.fetchDataToServer(sort, order);
@@ -29,6 +35,8 @@ class ShopFilter extends Component {
                 <option value="">Default Sorting</option>
                 <option value="price-asc">Price: low to high</option>
                 <option value="price-desc">Price: high to low</option>
+                <option value="name-asc">Name: A-Z</option>
+                <option value="name-desc">Name: Z-A</option>
               </select>
             </div>
           </div>

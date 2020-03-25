@@ -4,3 +4,5 @@ export const FETCH_DATA_TO_SERVER = "FETCH_DATA_TO_SERVER";
 export const FETCH_DATA_IN_FILTER = "FETCH_DATA_IN_FILTER";
 // get data and search
 export const SEARCH = "SEARCH";
+//get data and pagination
+export const PAGINATION = "PAGINATION";

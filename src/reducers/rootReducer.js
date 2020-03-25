@@ -1,6 +1,8 @@
 import * as types from "../constants/ActionTypes";
 const initialState = {
-  products: []
+  products: [],
+  page: null,
+  totalItems: ""
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -9,6 +11,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         products: action.payload
+      };
+    case types.PAGINATION:
+      // console.log(action.payload)
+      return {
+        ...state,
+        products: action.payload,
+        page: action.page,
+        totalItems: action.resTotal
       };
     case types.FETCH_DATA_IN_FILTER: {
       return {

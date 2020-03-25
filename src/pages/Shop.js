@@ -1,12 +1,17 @@
 import ShopSidebar from "../components/ShopSideBar";
 import ShopFilter from "../components/ShopFilter";
 import { connect } from "react-redux";
-import { fetchDataToServer, fetchDataToFilter } from "../actions/index";
+import {
+  fetchDataToServer,
+  fetchDataToFilter,
+  fetchDataToPagination
+} from "../actions/index";
 import React, { Component } from "react";
-
+import Pagination from "react-js-pagination";
+import "../App.css";
 class Shop extends Component {
   componentDidMount = () => {
-    this.props.fetchDataToServer();
+    this.props.fetchDataToPagination(1);
     // this.props.fetchDataToFilter();
   };
 
@@ -63,6 +68,18 @@ class Shop extends Component {
                 </div>
               </div>
             </div>
+            <div className="pagination p1">
+              <Pagination
+                disabledClass={"disabled-navigation"}
+                prevPageText={"<"}
+                nextPageText={">"}
+                hideFirstLastPages
+                activePage={this.props.data.page}
+                // itemsCountPerPage={this.props.data.numItemsPerPage}
+                totalItemsCount={this.props.data.totalItems}
+                onChange={this.props.fetchDataToPagination}
+              />
+            </div>
           </section>
         </main>
       </div>
@@ -82,6 +99,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     fetchDataToFilter: () => {
       dispatch(fetchDataToFilter());
+    },
+    fetchDataToPagination: (page, limit) => {
+      dispatch(fetchDataToPagination(page, limit));
     }
   };
 };

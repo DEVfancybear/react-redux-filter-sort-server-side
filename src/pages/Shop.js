@@ -100,8 +100,8 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchDataToFilter: () => {
       dispatch(fetchDataToFilter());
     },
-    fetchDataToPagination: (page, limit) => {
-      dispatch(fetchDataToPagination(page, limit));
+    fetchDataToPagination: page => {
+      dispatch(fetchDataToPagination(page));
     }
   };
 };
